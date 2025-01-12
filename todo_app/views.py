@@ -1,4 +1,4 @@
-from pyexpat.errors import messages
+from datetime import datetime, timezone
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -6,16 +6,11 @@ from todo_app.models import Task
 
 # Create your views here.
 def greetings(request):
-    print(request)
-    return HttpResponse("<h2>Hello from Django :)</h2>")
+    return render(request, "todo_app_templates/index.html")
 
 
 def all_tasks(request):
-    tasks = Task.objects.all()
-    msg = "<h2>"
-    for task in tasks:
-        msg += f"title: {task.title} <br>"
-        msg += f"assign: {task.assign_to} <br>"
-        msg += f"deadline: {task.deadline} <br>"
-    msg += "</h2>"
-    return HttpResponse(msg)
+    return render(request, "todo_app_templates/tasks.html",
+                  context={
+                      "tasks": Task.objects.all(), "dt_now": datetime.now(tz=timezone.utc)
+                  })

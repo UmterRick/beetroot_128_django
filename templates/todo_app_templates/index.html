@@ -1,0 +1,47 @@
+{% extends "todo_app_templates/base.html" %}
+
+
+{% block title %}<title>Index HTML File</title>{% endblock %}
+
+{% block body %}
+    {% include "todo_app_templates/custom_elements/my_text_input.html" %}
+
+    <h1 class="just-smth-green">Hello from Django :)</h1>
+    <h3 id="second-header" class="just-smth-green"> New line in HTML file</h3>
+    <div>
+        <p>Another text part</p>
+        <p>Start text <a href="https://google.com">Link to another resource</a> End of text</p>
+        <button class="agree-button"><a href="http://wikipedia.com">Go to Wikipedia</a></button>
+        <a href="http://wikipedia.com">
+            <button>Go to Wikipedia</button>
+        </a>
+
+        <a href="http://wikipedia.com">
+            <button class="agree-button">Go to sadasdassadas</button>
+        </a>
+        <a href="http://wikipedia.com">
+            <button class="agree-button default-class my-class" style="background-color: green">Go to 12321</button>
+        </a>
+        <label>
+            <input type="text">Agree?
+        </label>
+    </div>
+
+{% endblock %}
+<style>
+    button {
+        border: #ff0000 dashed 1px;
+        background-color: aqua
+    }
+
+    .agree-button, .just-smth-green {
+        background-color: lawngreen
+    }
+
+    #second-header {
+        color: crimson;
+    }
+
+
+</style>
+
