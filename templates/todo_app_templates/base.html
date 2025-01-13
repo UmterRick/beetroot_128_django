@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Title</title>
+    {% endblock %}
+
+</head>
+<header style="border: crimson solid 2px">
+    My Site header With important tools
+</header>
+<body style="border: blue solid 2px">
+{% block body %}
+    Hello from body
+{% endblock %}
+</body>
+<footer style="border: crimson solid 2px">
+    All additional information about this service
+</footer>
+</html>
