@@ -1,0 +1,5 @@
+asgiref==3.8.1
+Django==5.1.4
+django-debug-toolbar==4.4.6
+psycopg2-binary==2.9.10
+sqlparse==0.5.3
