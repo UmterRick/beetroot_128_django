@@ -1,0 +1,10 @@
+{% extends "todo_app_templates/base.html" %}
+{% block title %}<title>My To Do List </title>{% endblock %}
+{% block body %}
+    <h2> Create New Task</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button type="submit"> Create Task</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'todo_app_templates/base.html' %}
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+        {{ my_form.as_ul }}
+        <button type="submit">SUBMIT!</button>
+    </form>
+
+{% endblock %}
