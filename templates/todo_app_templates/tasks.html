@@ -2,7 +2,7 @@
 {% block title %}<title>My To Do List </title>{% endblock %}
 {% block body %}
     <h1> ToDo List:</h1>
-    <a href="{% url "task_create" %}">
+    <a href="{% url "task-create" %}">
         <button>+ Create New Task</button>
     </a>
 
@@ -26,13 +26,13 @@
             <li>
                 <div>
                     <h3> {{ task.title }}
-                        <a href="{% url "task_details" task.id %}">
+                        <a href="{% url "task-details" task.id %}">
                             <button>Details</button>
                         </a>
-                        <a href="{% url "task_edit" task.id %}">
+                        <a href="{% url "task-edit" task.id %}">
                             <button>Edit</button>
                         </a>
-                        <a href="{% url "task_delete" task.id %}">
+                        <a href="{% url "task-delete" task.id %}">
                             <button>Delete</button>
                         </a>
                     </h3>
