@@ -1,9 +1,13 @@
 {% extends 'todo_app_templates/base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
 {% block body %}
     <form method="post">
         {% csrf_token %}
-        {{ my_form.as_ul }}
-        <button type="submit">SUBMIT!</button>
+        {{ my_form|crispy }}
+    <button type="submit" class="btn btn-success">Submit</button>
+
     </form>
 
 {% endblock %}
