@@ -2,38 +2,48 @@
 {% block title %}<title>My To Do List </title>{% endblock %}
 {% block body %}
     <h1> ToDo List:</h1>
-    <img src="https://themeisle.com/blog/wp-content/uploads/2024/06/Online-Image-Optimizer-Test-Image-PNG-Version.png"
-         alt="Picture"
-         height="40px"
-         width="40px"
-    >
-    <img src="https://no-cdn.shortpixel.ai/client/to_avif,q_lossy,ret_wait/https://shortpixel.com/blog/wp-content/uploads/2023/12/nyan-cat.gif"
-         alt="Picture"
-         height="40px"
-         width="40px"
-    >
-    <label>
+    <a href="{% url "task_create" %}">
+        <button>+ Create New Task</button>
+    </a>
 
-        Your File <input type="file" accept=".png">>
-    </label>
+    {#    <img src="https://themeisle.com/blog/wp-content/uploads/2024/06/Online-Image-Optimizer-Test-Image-PNG-Version.png"#}
+    {#         alt="Picture"#}
+    {#         height="40px"#}
+    {#         width="40px"#}
+    {#    >#}
+    {#    <img src="https://no-cdn.shortpixel.ai/client/to_avif,q_lossy,ret_wait/https://shortpixel.com/blog/wp-content/uploads/2023/12/nyan-cat.gif"#}
+    {#         alt="Picture"#}
+    {#         height="40px"#}
+    {#         width="40px"#}
+    {#    >#}
+    {#    <label>#}
+    {##}
+    {#        Your File <input type="file" accept=".png">>#}
+    {#    </label>#}
 
     <ol>
         {% for task in tasks %}
             <li>
                 <div>
-                    <h3> {{ task.title }} </h3>
+                    <h3> {{ task.title }}
+                        <a href="{% url "task_details" task.id %}">
+                            <button>Details</button>
+                        </a>
+                        <a href="{% url "task_edit" task.id %}">
+                            <button>Edit</button>
+                        </a>
+                        <a href="{% url "task_delete" task.id %}">
+                            <button>Delete</button>
+                        </a>
+                    </h3>
                     <p> Assigned to: {{ task.assign_to }} x</p>
                     <p> Description: <br> {{ task.description|truncatewords:5 }} </p>
                     <p> Do until: {{ task.deadline }}</p>
                     <p>You have {{ 1 }} Day {{ 1|pluralize:"s" }}</p>
-                    Until {{ task.deadline|timeuntil:dt_now }} <br>
-                    Since {{ task.deadline|timesince:dt_now }}
-                    {% if task.deadline < dt_now %} <p style="color: red"> Task Expired</p> {% endif %}
                 </div>
             </li>
         {% endfor %}
     </ol>
-    {% include "todo_app_templates/custom_elements/my_text_input.html"  with field_name="Your Address" %}
-    <iframe src="https://youtube.com"></iframe>
+
 
 {% endblock %}
