@@ -46,7 +46,7 @@ def handle_form(request):
 
 class TaskListView(ListView):
     model = Task
-    template_name = "todo_app_templates/tasks.html"
+    template_name = "todo_app_templates/tasks_2.html"
     context_object_name = "tasks"
 
 
