@@ -17,13 +17,14 @@ Including another URLconf
 from debug_toolbar.toolbar import debug_toolbar_urls
 from django.contrib import admin
 from django.urls import path, include
-from todo_app import views, urls
-
+from todo_app import views, urls as todo_urls
+from accounts import urls as account_urls
 urlpatterns = [
+    # path('first-url/', views.greetings),
+    # path('tasks/', views.all_tasks, name="tasks-list"),
+    # path('tasks-generic/', views.TaskListView.as_view(), name="tasks-generic-list"),
+    # path('form/', views.handle_form, name="test-form"),
     path('admin/', admin.site.urls),
-    path('first-url/', views.greetings),
-    path('tasks/', views.all_tasks, name="tasks-list"),
-    path('tasks-generic/', views.TaskListView.as_view(), name="tasks-generic-list"),
-    path('form/', views.handle_form, name="test-form"),
-    path('tasks-app/', include(urls.urlpatterns))
+    path('tasks/', include(todo_urls.urlpatterns)),
+    path('auth/', include(account_urls.urlpatterns)),
 ] +  debug_toolbar_urls()

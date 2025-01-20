@@ -1,7 +1,9 @@
 from datetime import datetime, timezone
 
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from todo_app.forms import FirstForm, TaskForm
 from todo_app.models import Task
@@ -11,7 +13,7 @@ from todo_app.models import Task
 def greetings(request):
     return render(request, "todo_app_templates/index.html")
 
-
+@login_required
 def all_tasks(request):
     if request.method == "GET":
         query = Task.objects.select_related("assign_to")
@@ -62,7 +64,7 @@ class TaskDetailsView(DetailView):
     template_name = "todo_app_templates/task_details.html"
     context_object_name = "task"
 
-
+@method_decorator(login_required, name="dispatch")
 class TaskEditView(UpdateView):
     model = Task
     form_class = TaskForm

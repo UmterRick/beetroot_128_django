@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}
+    <title>Sign Up</title>
+{% endblock %}
+{% block body %}
+    <div class="grid grid-cols-3">
+        <div class="col-start-2">
+            <h2>Sign Up</h2>
+            
+            <form class="border-red-500 border-2" method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="rounded border-5 border-green-600 bg-green-300" type="submit"> Register </button>
+            </form>
+        </div>
+        
+    </div>
+    
+    
+{% endblock %}
