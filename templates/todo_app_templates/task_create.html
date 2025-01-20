@@ -1,10 +1,13 @@
 {% extends "todo_app_templates/base.html" %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
 {% block title %}<title>My To Do List </title>{% endblock %}
 {% block body %}
     <h2> Create New Task</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_div }}
-        <button type="submit"> Create Task</button>
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-dark"> Create Task</button>
     </form>
 {% endblock %}

@@ -1,49 +1,77 @@
 {% extends "todo_app_templates/base.html" %}
-{% block title %}<title>My To Do List </title>{% endblock %}
+{% block title %}
+    <title>My To Do List </title>
+
+{% endblock %}
 {% block body %}
     <h1> ToDo List:</h1>
-    <a href="{% url "task-create" %}">
-        <button>+ Create New Task</button>
-    </a>
-
-    {#    <img src="https://themeisle.com/blog/wp-content/uploads/2024/06/Online-Image-Optimizer-Test-Image-PNG-Version.png"#}
-    {#         alt="Picture"#}
-    {#         height="40px"#}
-    {#         width="40px"#}
-    {#    >#}
-    {#    <img src="https://no-cdn.shortpixel.ai/client/to_avif,q_lossy,ret_wait/https://shortpixel.com/blog/wp-content/uploads/2023/12/nyan-cat.gif"#}
-    {#         alt="Picture"#}
-    {#         height="40px"#}
-    {#         width="40px"#}
-    {#    >#}
-    {#    <label>#}
-    {##}
-    {#        Your File <input type="file" accept=".png">>#}
-    {#    </label>#}
-
-    <ol>
+    <table class="table table-bordered table-warning border-black w-50">
+        <tr>
+            <td>
+                <a href="{% url "task-create" %}">
+                    <button>+ Create New Task</button>
+                </a>
+            </td>
+        </tr>
+        <thead>
+        <tr>
+            <th scope="col">ToDo Info</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
         {% for task in tasks %}
-            <li>
-                <div>
-                    <h3> {{ task.title }}
+            <tr>
+                <td>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">Field</th>
+                            <th scope="col">Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Title</td>
+                            <td>{{ task.title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Assigned To</td>
+                            <td>{{ task.assigned_to }}</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{ task.description|truncatewords:5 }}</td>
+                        </tr>
+                        <tr>
+                            <td>Priority</td>
+                            <td>{{ task.priority_level }}</td>
+                        </tr>
+                        <tr>
+                            <td><p>You have {{ 1 }} Day {{ 1|pluralize:"s" }}</p></td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </td>
+                <td>
+
+                    <div class="btn-group">
                         <a href="{% url "task-details" task.id %}">
-                            <button>Details</button>
+                            <button class="btn btn-secondary mx-1"><i class="bi bi-info-square"></i></button>
                         </a>
                         <a href="{% url "task-edit" task.id %}">
-                            <button>Edit</button>
+                            <button class="btn btn-primary mx-1"><i class="bi bi-pencil-square"></i></button>
                         </a>
                         <a href="{% url "task-delete" task.id %}">
-                            <button>Delete</button>
+                            <button class="btn btn-danger mx-1"><i class="bi bi-trash"></i></button>
                         </a>
-                    </h3>
-                    <p> Assigned to: {{ task.assign_to }} x</p>
-                    <p> Description: <br> {{ task.description|truncatewords:5 }} </p>
-                    <p> Do until: {{ task.deadline }}</p>
-                    <p>You have {{ 1 }} Day {{ 1|pluralize:"s" }}</p>
-                </div>
-            </li>
+                    </div>
+                </td>
+            </tr>
         {% endfor %}
-    </ol>
-
+        </tbody>
+    </table>
 
 {% endblock %}
